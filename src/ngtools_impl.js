@@ -49,6 +49,10 @@ function listLazyRoutesOfModule(entryModule, host, reflector) {
     var allLazyRoutes = lazyRoutes.reduce(function includeLazyRouteAndSubRoutes(allRoutes, lazyRoute) {
         var route = lazyRoute.routeDef.toString();
         _assertRoute(allRoutes, lazyRoute);
+        // allRoutes[route] = lazyRoute;
+        if (route in allRoutes) {
+            return allRoutes;
+        }
         allRoutes[route] = lazyRoute;
         // StaticReflector does not support discovering annotations like `NgModule` on default
         // exports
